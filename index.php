@@ -2,9 +2,11 @@
 require_once("./app/config/dependencias.php");
 
 session_start();
+/*
 if (!isset($_SESSION['usuario'])) {
     header("location: ./login.php");
 }
+    */
 ?>
 
 <!DOCTYPE html>
@@ -15,10 +17,12 @@ if (!isset($_SESSION['usuario'])) {
     <link rel="stylesheet" href="<?=CSS."bootstrap.min.css";?>">
     <link rel="stylesheet" href="<?=CSS."inicio.css";?>">
     <link rel="stylesheet" href="<?=ICONS."bootstrap-icons.css";?>">
+    <!-- <link rel="stylesheet" href="<?=CSS."table.css";?>"> -->
+
     <title>Formulario</title>
 </head>
 <body class="vh-100">
-    
+<!-- 
     <div class="row m-4 c-datos">
         <div class="d-flex justify-content-around align-items-center w-100">
             <h1 class="text-center text-dark m-0">Bienvenido <i class="bi bi-emoji-sunglasses-fill py-2 fs-1"></i></h1>
@@ -40,7 +44,7 @@ if (!isset($_SESSION['usuario'])) {
             </div>
         </div>
     </div>
-    
+ -->    
     <div class="row">
         <div class="col-5 p-5 d-flex justify-content-center">
             <form action="./index.php" method="post" class="p-4">
@@ -79,5 +83,6 @@ if (!isset($_SESSION['usuario'])) {
     <script src="./public/js/alerts.js"></script>
     <script src="./public/js/registro_productos.js"></script>
     <script src="./public/js/cerrar_session.js"></script>
+    <!-- <script src="./public/js/table.js"></script> -->
 </body>
 </html>

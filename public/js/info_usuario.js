@@ -1,3 +1,14 @@
+
+const cerrar_session = () => {
+    fetch("app/controller/cerrar_sesion.php")
+    .then(respuesta => respuesta.json())
+    .then(async (respuesta) => {
+        await Swal.fire({icon: "success",title:`${respuesta[1]}`});
+        window.location = "login.php";
+    });
+}
+
+
 const obtener_informacion = () => {
     fetch("app/controller/informacion_usuario.php")
     .then(respuesta => respuesta.json())
@@ -21,17 +32,20 @@ const actualizar_informacion = () => {
     data.append('email',email);
     data.append('pass',pass);
 
-    fetch("app/controller/actualizar_info_usuario.php",{
+    fetch("app/controller/actualizar_Iusuario.php",{
         method:"POST",
         body: data
     })
     .then(respuesta => respuesta.json())
-    .then(respuesta => {
+    .then(async respuesta => {
         if (respuesta[0] == 1) {
-            alert(`${respuesta[1]}`);
+            await Swal.fire({icon: "success",title:`${respuesta[1]}`});
             window.location="index.php";
+        } else if(respuesta[0] == "cerrar") {
+            await Swal.fire({icon: "success",title:`${respuesta[1]}`, text: `${respuesta[2]}`});
+            cerrar_session();
         } else {
-            alert(`${respuesta[1]}`);
+            Swal.fire({icon: "error",title:`${respuesta[1]}`});
         }
     })
 }

@@ -3,7 +3,12 @@ let btnEditar = false;
 
 const obtener_datos = () => {
     let tablaProducto = document.getElementById('tabla_productos');
-    fetch("app/controller/obtener_datos.php")
+    let data = new FormData();
+    data.append("metodo","consultar");
+    fetch("./app/controller/obtener_datos.php",{
+        method:"POST", 
+        body:data
+    })
     .then(respuesta => respuesta.json())
     .then((respuesta) => {
         let contenido = ''; 
@@ -35,10 +40,11 @@ const registrar_producto = () => {
     let precio_p = document.getElementById('precio').value;
     let cantidad_p = document.getElementById('cantidad').value;
     let data = new FormData();
+    data.append("metodo","insertar_datos")
     data.append("nombre_p",nombre_p); 
     data.append("precio_p",precio_p); 
     data.append("cantidad_p",cantidad_p);
-    fetch("app/controller/registro_productos.php",{
+    fetch("app/controller/obtener_datos.php",{
         method:"POST",
         body: data
     })
@@ -61,11 +67,12 @@ const editar_producto = () => {
     let precio_p = document.getElementById('precio').value;
     let cantidad_p = document.getElementById('cantidad').value;
     let data = new FormData();
+    data.append("metodo","actualizar_datos");
     data.append('idInput',editar);
     data.append("nombre_p",nombre_p); 
     data.append("precio_p",precio_p); 
     data.append("cantidad_p",cantidad_p); 
-    fetch(`app/controller/actualizar_producto.php`,{
+    fetch(`app/controller/obtener_datos.php`,{
         method:"POST",
         body: data
     })
@@ -89,8 +96,9 @@ const editar_producto = () => {
 
 const eliminar_producto = () => {
     let data = new FormData();
+    data.append("metodo","eliminar_datos")
     data.append('idInput',editar);
-    fetch('app/controller/eliminar_producto.php', {
+    fetch('app/controller/obtener_datos.php', {
         method: 'POST',
         body: data
     })

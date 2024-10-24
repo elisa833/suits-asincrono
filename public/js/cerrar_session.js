@@ -7,6 +7,8 @@ const cerrar_session = () => {
     });
 }
 
-document.getElementById('btn-cerrrar').addEventListener('click',() => {
+/*
+document.getElementById('btn-cerrar').addEventListener('click',() => {
     cerrar_session();
 });
+*/

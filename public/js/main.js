@@ -1,12 +1,13 @@
 //URL: dirreccion externa
 //URI: direccion interna
-const validar_usuario = () => {
+const iniciar_sesion = () => {
     let email = document.getElementById('email-id').value;
     let pass = document.getElementById('pass-id').value;
     let data = new FormData();
     data.append("email",email); //añade datos al formulario
     data.append("pass",pass); //añade datos al formulario
-    fetch("app/controller/login.php",{
+    data.append("metodo","iniciar_sesion"); //añade datos al formulario
+    fetch("app/controller/usuarios.php",{
         method:"POST",
         body: data
     }).then(respuesta => respuesta.json())
@@ -20,7 +21,7 @@ const validar_usuario = () => {
     });
 }
 
-const registrar_usuario = () => {
+const registro = () => {
     let nombre = document.getElementById('nombre').value;
     let apellido = document.getElementById('apellido').value;
     let email = document.getElementById('email').value;
@@ -30,7 +31,8 @@ const registrar_usuario = () => {
     data.append("apellido",apellido); //añade datos al formulario
     data.append("email",email); //añade datos al formulario
     data.append("pass",pass); //añade datos al formulario
-    fetch("app/controller/registro.php",{
+    data.append("metodo","registro"); //añade datos al formulario
+    fetch("app/controller/usuarios.php",{
         method:"POST",
         body: data
     }).then(respuesta => respuesta.json())
@@ -45,16 +47,16 @@ const registrar_usuario = () => {
 }
 
 window.addEventListener('DOMContentLoaded',() => {
-    //LOGIN
+    //INICIAR SESION
     if (document.getElementById('btn-saludar')) {
         document.getElementById('btn-saludar').addEventListener('click',() => {
-            validar_usuario();
+            iniciar_sesion();
         });                
     }
     //REGISTRO
     if (document.getElementById('btn-registrar')) {
         document.getElementById('btn-registrar').addEventListener('click',() => {
-            registrar_usuario();
+            registro();
         });        
     }
 });

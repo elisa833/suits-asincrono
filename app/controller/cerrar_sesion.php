@@ -3,5 +3,5 @@
     session_unset(); //liberamos la session actual
     session_destroy(); //destruimos la session
 
-    echo json_encode([1,"Session finalizada"]);
+    echo json_encode([1,"Sesion finalizada"]);
 ?>
